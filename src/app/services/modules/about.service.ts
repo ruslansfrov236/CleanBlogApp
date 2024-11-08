@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../http-client.service';
 import { firstValueFrom, Observable } from 'rxjs';
-import { CreateAbout } from '../../entities/create-about';
+import {  CreateAboutDto } from '../../entities/createAboutDto';
 import { UpdateAbout } from '../../entities/update-about';
+import { About } from '../../modules/about';
 
 @Injectable({
   providedIn: 'root'
@@ -12,30 +13,36 @@ export class AboutService {
   constructor(private http:HttpClientService) { }
 
 
-  async read():Promise<void>{
-    const data:Observable<void> = await this.http.get({
+  async read():Promise<{about:About[]}>{
+    const data:Observable<{about:About[]}> = await this.http.get({
       controller:"about"
     })
-    await firstValueFrom(data);
+   return await firstValueFrom(data);
   }
-  async readById(id:string):Promise<void>{
-    const data :Observable<void> = await this.http.get({
-      controller:"about"
+  async readById(id:string):Promise<{about:About}>{
+    const data :Observable<{about:About}> = await this.http.get({
+      controller:"about",
+     
     }, id)
 
-    await firstValueFrom(data);
+  return  await firstValueFrom(data);
   }
 
-  async create(createAbout:CreateAbout):Promise<CreateAbout>{
+  async create(createAbout:CreateAboutDto):Promise<CreateAboutDto>{
+   
 
-    const data:Observable<CreateAbout> = await this.http.post({
-      controller:"about"
-    }, createAbout);
+    const data:Observable<CreateAboutDto> = await this.http.post({
+    
+      controller:"About",
+     
+     
+    },createAbout);
+   
    return await firstValueFrom(data);
   }
   async edit(updateAbout:UpdateAbout):Promise<UpdateAbout>{
 
-    const data:Observable<UpdateAbout> = await this.http.post({
+    const data:Observable<UpdateAbout> = await this.http.put({
       controller:"about"
     }, updateAbout);
    return await firstValueFrom(data);

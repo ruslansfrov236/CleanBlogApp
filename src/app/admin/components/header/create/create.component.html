@@ -1,0 +1,44 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()"  enctype="multipart/form-data">
+  
+   
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter text" />
+      <mat-error *ngIf="myForm.get('title').invalid && myForm.get('title').touched">
+        <span class="text-danger" *ngIf="myForm.get('title').errors?.['required']">Please do not enter blank information.</span>
+        <span class="text-danger" *ngIf="myForm.get('title').errors?.['minlength']">Please enter information with at least 4 characters.</span>
+        <span class="text-danger" *ngIf="myForm.get('title').errors?.['maxlength']">Please enter information with a maximum of 150 characters.</span>
+      </mat-error>
+    </mat-form-field>
+  
+ 
+    <mat-form-field appearance="fill">
+      <mat-label>Page Number</mat-label>
+      <input type="number" matInput formControlName="pageNumber" placeholder="Enter page number" />
+      <mat-error *ngIf="myForm.get('pageNumber').invalid && myForm.get('pageNumber').touched">
+        <span class="text-danger" *ngIf="myForm.get('pageNumber').errors?.['required']">Please do not leave this field blank.</span>
+        <span class="text-danger" *ngIf="myForm.get('pageNumber').errors?.['min']">Please enter a number greater than 0.</span>
+        <span class="text-danger" *ngIf="myForm.get('pageNumber').errors?.['max']">Please enter a valid page number.</span>
+      </mat-error>
+    </mat-form-field>
+  
+   
+  <div>
+    <input type="file" (change)="onFileChange($event)" />
+  </div>
+   
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter text"></textarea>
+      <mat-error *ngIf="myForm.get('description').invalid && myForm.get('description').touched">
+        <span class="text-danger" *ngIf="myForm.get('description').errors?.['required']">Please do not enter blank information.</span>
+        <span class="text-danger" *ngIf="myForm.get('description').errors?.['minlength']">Please enter information with at least 4 characters.</span>
+        <span class="text-danger" *ngIf="myForm.get('description').errors?.['maxlength']">Please enter information with a maximum of 250 characters.</span>
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button type="submit" [disabled]="!myForm.valid">Create</button>
+  </form>
+  
+  
+

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ListComponent } from './list/list.component';
+import { CreatePosts } from '../../../entities/create-posts';
 
 @Component({
   selector: 'app-posts',
@@ -9,4 +11,11 @@ import { Component } from '@angular/core';
 })
 export class PostsComponent {
 
+  @ViewChild(ListComponent) listComponent: ListComponent;
+
+
+  createPost(createPost:CreatePosts){
+
+    this.listComponent.getPost();
+   }
 }

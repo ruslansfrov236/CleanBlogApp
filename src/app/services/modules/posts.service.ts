@@ -3,6 +3,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { HttpClientService } from '../http-client.service';
 import { UpdatePosts } from '../../entities/update-posts';
 import { CreatePosts } from '../../entities/create-posts';
+import { Posts } from '../../modules/posts';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class PostsService {
 
   constructor( private http:HttpClientService) { }
 
-  async read():Promise<void>{
-    const data:Observable<void> = await this.http.get({
+  async read():Promise<Posts[]>{
+    const data:Observable<Posts[]> = await this.http.get({
       controller:"posts",
     
     })
-    await firstValueFrom(data)
+   return await firstValueFrom(data)
    }
    async getById(id:string):Promise<void>{
     const data:Observable<void> = await this.http.get({
@@ -33,7 +34,7 @@ export class PostsService {
     return  await firstValueFrom(data)
    }
    async update(updateposts:UpdatePosts):Promise<UpdatePosts>{
-    const data:Observable<UpdatePosts> = await this.http.post({
+    const data:Observable<UpdatePosts> = await this.http.put({
       controller:"posts",
     
     }, updateposts)

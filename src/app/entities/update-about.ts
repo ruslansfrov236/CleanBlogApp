@@ -1,4 +1,4 @@
 export class UpdateAbout {
-    id:string;
-    description:string;
+  id:string;
+  description:string;
 }

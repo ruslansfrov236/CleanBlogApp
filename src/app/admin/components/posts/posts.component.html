@@ -1,1 +1,10 @@
-<p>posts works!</p>
+
+
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" opened class="left">
+        <app-create (createPost)="createPost($event)"></app-create>
+    </mat-drawer>
+    <mat-drawer-content>
+       <app-list></app-list>
+    </mat-drawer-content>
+</mat-drawer-container>

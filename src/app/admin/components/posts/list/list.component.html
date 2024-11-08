@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Description Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+  
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef> Created Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+      </ng-container>
+  
+      <!-- Updated Date Column -->
+      <ng-container matColumnDef="updatedDate">
+        <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
+      </ng-container>
+  
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element" appDelete [id]="element.id" (callback)="getPost()" controller="about">
+          <!-- You can include an icon or button for deletion here -->
+          <button mat-icon-button aria-label="Delete">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="onEdit(element.id)">Edit</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="create">
+        <th mat-header-cell *matHeaderCellDef>Create</th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="onCreate()">Create</button>
+        </td>
+      </ng-container>
+      <!-- Header Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      
+      <!-- Data Rows -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </div>
+  

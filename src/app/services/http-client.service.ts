@@ -2,14 +2,15 @@ import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { RequestParameters } from '../entities/request-parameters';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
-  constructor(public httpClient: HttpClient, @Inject("baseUrl") private baseUrl: string) { }
+  constructor(public httpClient: HttpClient, @Inject("baseUrl") private baseUrl: string) { };
 
+   
   private url(requestParameter: Partial<RequestParameters>): string {
     return `${requestParameter.baseUrl ? requestParameter.baseUrl : this.baseUrl}/${requestParameter.controller}${requestParameter.action ? `/${requestParameter.action}` : ""}`;
   }

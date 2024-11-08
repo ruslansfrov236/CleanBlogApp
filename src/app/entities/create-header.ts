@@ -1,7 +1,7 @@
 export class CreateHeader {
-    title:string;
-    description:string;
-    fileName:string;
-    pageNumber:number;
-    file:any
+  Title:string;
+  Description:string;
+  FileName:string;
+  PageNumber:number;
+  File:File
 }

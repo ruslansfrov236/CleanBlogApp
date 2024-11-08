@@ -11,6 +11,5 @@ export const appConfig: ApplicationConfig = {
               provideRouter(routes), provideClientHydration(), 
               provideAnimationsAsync(), 
               provideHttpClient(withFetch()),
-                
-                  {  provide:"baseUrl" , useValue :"https://localhost:7130", multi:true } ]
+              {  provide:"baseUrl" , useValue :"https://localhost:7019/api", multi:true } ]
   }

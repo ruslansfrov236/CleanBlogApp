@@ -1,0 +1,15 @@
+.not-found{
+    margin: 100px 0;
+    display: grid;
+    place-content: center;
+   
+    width: 100%;
+    height: 400px;
+
+    .home-link{
+        display: flex;
+        width: 200px;
+        height: 25px;
+        border-radius: 12%;
+    }
+}

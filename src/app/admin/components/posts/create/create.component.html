@@ -1,0 +1,35 @@
+<form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" placeholder="Enter text" />
+    <mat-error *ngIf="myForm.get('title').invalid && myForm.get('title').touched">
+      <span class="text-danger" *ngIf="myForm.get('title').errors?.['required']">Please do not enter blank information.</span>
+      <span class="text-danger" *ngIf="myForm.get('title').errors?.['minlength'] ">Please enter information between minimum 4  characters.</span>
+      <span class="text-danger" *ngIf=" myForm.get('title').errors?.['maxlength']">Please enter information between  maximum 150 characters.</span>
+    
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Content</mat-label>
+    <input matInput formControlName="content" placeholder="Enter text" />
+    <mat-error *ngIf="myForm.get('content').invalid && myForm.get('content').touched">
+      <span class="text-danger" *ngIf="myForm.get('content').errors?.['required']">Please do not enter blank information.</span>
+      <span class="text-danger" *ngIf="myForm.get('content').errors?.['minlength'] ">Please enter information between minimum 4  characters.</span>
+      <span class="text-danger" *ngIf=" myForm.get('content').errors?.['maxlength']">Please enter information between  maximum 150 characters.</span>
+    
+    </mat-error>
+  </mat-form-field>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" placeholder="Enter text" ></textarea>
+    <mat-error *ngIf="myForm.get('description').invalid && myForm.get('description').touched">
+      <span class="text-danger" *ngIf="myForm.get('description').errors?.['required']">Please do not enter blank information.</span>
+      <span class="text-danger" *ngIf="myForm.get('description').errors?.['minlength'] ">Please enter information between minimum 4  characters.</span>
+      <span class="text-danger" *ngIf=" myForm.get('description').errors?.['maxlength']">Please enter information between  maximum 150 characters.</span>
+    
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit"  [disabled]="!myForm.valid">Create</button>
+</form>

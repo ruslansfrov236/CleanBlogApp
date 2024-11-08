@@ -1,1 +1,15 @@
-<p>about works!</p>
+
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" opened class="left">
+        @if(isEditMode){
+            <app-edit  (updateAbout)="updateAbout($event)"  ></app-edit>
+        }
+        @else {
+            <app-create   (createAbout)="createAbout($event)"></app-create>
+        }
+       
+    </mat-drawer>
+    <mat-drawer-content>
+       <app-list (editModeChange)="onEditModeChange($event)" ></app-list>
+    </mat-drawer-content>
+</mat-drawer-container>

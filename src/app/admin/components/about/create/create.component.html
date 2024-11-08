@@ -1,0 +1,20 @@
+
+  <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="Enter text" />
+      <mat-error *ngIf="myForm.get('description').invalid && myForm.get('description').touched">
+        <span class="text-danger" *ngIf="myForm.get('description').errors?.['required']">Please do not enter blank information.</span>
+        <span class="text-danger" *ngIf="myForm.get('description').errors?.['minlength'] ">Please enter information between minimum 4  characters.</span>
+        <span class="text-danger" *ngIf=" myForm.get('description').errors?.['maxlength']">Please enter information between  maximum 300 characters.</span>
+      
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button type="submit"   [disabled]="myForm.valid">Create</button>
+  </form>
+
+  
+
+   

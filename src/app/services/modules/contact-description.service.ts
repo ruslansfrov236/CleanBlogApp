@@ -3,6 +3,7 @@ import { HttpClientService } from '../http-client.service';
 import { firstValueFrom, Observable } from 'rxjs';
 import { CreateContactDescription } from '../../entities/create-contact-description';
 import { UpdateContactDescription } from '../../entities/update-contact-description';
+import { ContactDescription } from '../../modules/contact-description';
 
 @Injectable({
   providedIn: 'root'
@@ -13,30 +14,30 @@ export class ContactDescriptionService {
 
    }
 
-   async read():Promise<void>{
-    const data:Observable<void> = await this.http.get({
-      controller:"contactDescription",
+   async read():Promise<{contactDescription:ContactDescription[]}>{
+    const data:Observable<{contactDescription:ContactDescription[]}> = await this.http.get({
+      controller:"ContactDescription",
     
     })
-    await firstValueFrom(data)
+   return await firstValueFrom(data)
    }
-   async getById(id:string):Promise<void>{
-    const data:Observable<void> = await this.http.get({
-      controller:"contactDescription",
+   async getById(id:string):Promise<{contactDescription:ContactDescription}>{
+    const data:Observable<{contactDescription:ContactDescription}> = await this.http.get({
+      controller:"ContactDescription",
     
     }, id)
-    await firstValueFrom(data)
+    return await firstValueFrom(data)
    }
    async create(createContactDescription:CreateContactDescription):Promise<CreateContactDescription>{
     const data:Observable<CreateContactDescription> = await this.http.post({
-      controller:"contactDescription",
+      controller:"ContactDescription",
     
     }, createContactDescription)
     return  await firstValueFrom(data)
    }
    async update(updateContactDescription:UpdateContactDescription):Promise<UpdateContactDescription>{
-    const data:Observable<UpdateContactDescription> = await this.http.post({
-      controller:"contactDescription",
+    const data:Observable<UpdateContactDescription> = await this.http.put({
+      controller:"ContactDescription",
     
     }, updateContactDescription)
     return  await firstValueFrom(data)
@@ -44,7 +45,7 @@ export class ContactDescriptionService {
 
    async delete(id:string):Promise<void>{
     const data:Observable<void> = await this.http.delete({
-      controller:"contactDescription",
+      controller:"ContactDescription",
       action:"delete"
     
     }, id)
